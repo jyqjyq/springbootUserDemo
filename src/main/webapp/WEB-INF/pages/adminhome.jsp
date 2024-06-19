@@ -45,7 +45,7 @@
         </ul>
         <ul class="layui-nav layui-nav-tree" lay-filter="test">
             <li class="layui-nav-item">
-                <a href="javascript:;">房源信息管理</a>
+                <a href="javascript:;">运动项目管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="${pageContext.request.contextPath }/toAllHousePage" target="iframe">所有房源信息</a></dd>
                     <dd><a href="${pageContext.request.contextPath }/addHouse" target="iframe">添加房源信息</a></dd>

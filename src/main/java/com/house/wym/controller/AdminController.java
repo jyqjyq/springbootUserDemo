@@ -93,7 +93,7 @@ public class AdminController {
 
 	@RequestMapping("/toAllHousePage")
 	public String toAllHousePage() {
-		return "allhouse";
+		return "allsport";
 	}
 
 	/**

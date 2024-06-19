@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>所有房源信息</title>
+    <title>运动项目信息</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/layui/css/layui.css">
 </head>
 <body>
