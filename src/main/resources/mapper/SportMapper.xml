@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sport.dao.SportMapper">
+	<resultMap type="com.sport.entity.Sport" id="BasicMap">
+		<id column="h_id" jdbcType="INTEGER" property="hID" />
+		<result column="sport_name" jdbcType="VARCHAR" property="sportName"/>
+		<result column="publisher" jdbcType="VARCHAR" property="publisher"/>
+		<result column="publish_time" jdbcType="VARCHAR" property="publishTime"/>
+	</resultMap>
+	
+	<!-- 首页信息查询 -->
+	<select id="findSportInfo" resultMap="BasicMap">
+		SELECT
+			h_id,
+			sport_name
+		FROM
+			t_sport
+	</select>
+	
+	<!-- 运动详细信息 -->
+	<select id="findSportDetailsById" parameterType="int" resultMap="BasicMap">
+		SELECT
+			h_id,
+			sport_name
+		FROM
+			t_sport
+		WHERE
+			h_id=#{id}
+	</select>
+	
+	<insert id="addNewSport" parameterType="com.sport.entity.Sport">
+		insert into 
+			t_sport 
+		values
+		(	0,
+			#{sportName},
+			#{publisher},
+			NOW()
+		)
+	</insert>
+	
+	<!-- 查找所有运动 -->
+	<select id="findAllSport" parameterType="com.sport.entity.Page" resultMap="BasicMap">
+		select * from t_sport limit #{page},#{limit}
+	</select>
+	
+	<!-- 删除用户发布的运动信息 -->
+	<delete id="deleteUserSport" parameterType="int">
+		delete from t_sport where h_id=#{hID}
+	</delete>
+	<!-- 修改用户发布的运动信息 -->
+	<update id="updateSport" parameterType="com.sport.entity.Sport">
+		UPDATE t_sport
+		SET 
+			sport_name = #{sportName}
+		WHERE
+			h_id = #{hID}
+	</update>
+	
+	<!-- 条件搜索 -->
+	<select id="findSportByLike" parameterType="string" resultMap="BasicMap">
+		SELECT
+			*
+		FROM
+			t_sport h
+		WHERE
+			CONCAT(
+				h.sport_name
+			) LIKE CONCAT("%", #{keywords}, "%")
+	</select>
+	
+	<select id="findHouseOrderByDesc" resultMap="BasicMap">
+		SELECT * FROM t_sport h ORDER BY house_price DESC
+	</select>
+	
+	<select id="findHouseOrderByAsc" resultMap="BasicMap">
+		SELECT * FROM t_sport h ORDER BY house_price ASC
+	</select>
+</mapper>

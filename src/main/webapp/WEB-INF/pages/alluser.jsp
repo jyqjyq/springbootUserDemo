@@ -31,6 +31,9 @@
                 {field: 'uPassword', title: '密码', align: 'center'},
                 {field: 'uPhoneNumber', title: '联系电话', align: 'center'},
                 {field: 'uNickName', title: '昵称', align: 'center'},
+                {field: 'age', title: '年龄', align: 'center'},
+                {field: 'height', title: '身高', align: 'center'},
+                {field: 'weight', title: '体重', align: 'center'},
                 {title: '操作', align: 'center',toolbar:"#tools"}
             ]]
         });

@@ -47,8 +47,8 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">运动项目管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="${pageContext.request.contextPath }/toAllHousePage" target="iframe">所有房源信息</a></dd>
-                    <dd><a href="${pageContext.request.contextPath }/addHouse" target="iframe">添加房源信息</a></dd>
+                    <dd><a href="${pageContext.request.contextPath }/toAllSportPage" target="iframe">所有运动信息</a></dd>
+                    <dd><a href="${pageContext.request.contextPath }/addSport" target="iframe">添加运动信息</a></dd>
                 </dl>
             </li>
         </ul>

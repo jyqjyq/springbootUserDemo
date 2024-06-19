@@ -4,13 +4,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>修改密码</title>
+    <title>修改个人信息</title>
     <link rel="stylesheet" href="/static/layui/css/layui.css">
 </head>
 <body>
 <div class="wapper" style="width: 500px;margin-top: 40px">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend style="font-size: 26px">修改密码</legend>
+        <legend style="font-size: 26px">修改个人信息</legend>
     </fieldset>
     <form class="layui-form" action="">
         <div class="layui-form-item">
@@ -39,6 +39,24 @@
                        class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">长度为6-12位字母加数字</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">年龄</label>
+            <div class="layui-input-inline">
+                <input type="text" name="age" class="layui-input" placeholder="${loginUser.age}" value="${loginUser.age}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">身高</label>
+            <div class="layui-input-inline">
+                <input type="text" name="height" class="layui-input" placeholder="${loginUser.height}" value="${loginUser.height}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">体重</label>
+            <div class="layui-input-inline">
+                <input type="text" name="weight" class="layui-input" placeholder="${loginUser.weight}" value="${loginUser.weight}">
+            </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
@@ -73,7 +91,7 @@
             }
             $.post("updateUserPwd",$('form').serialize(),function (res) {
 				if(res=="OK"){
-					layer.msg("密码修改成功",{icon:1});
+					layer.msg("修改成功",{icon:1});
 					$("form")[0].reset();
 				}else{
 					layer.msg("原密码错误",{icon:5});

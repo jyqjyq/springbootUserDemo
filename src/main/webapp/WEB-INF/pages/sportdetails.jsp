@@ -5,27 +5,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/layui/css/layui.css"/>
-    <title>健康管理系统</title>
-    <link rel="stylesheet" href="/static/css/global.css">
-    <script src="/static/layui/layui.js"></script>
+    <title>详情</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/details.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_848666_pri5cwk3xde.css"/>
+    <style>
+        .layui-carousel-ind{
+            top:-20px!important;
+        }
+    </style>
 </head>
 <body>
-<div id="bg-item">
+<header>
     <div class="layui-header title">
         <div class="layui-container">
+            <div class="layui-pull-left">
+            	<a href="toIndexPage" target="_blank">
+	                <img src="/static/img/logo.png" width="240px">
+            	</a>
+            </div>
             <c:if test="${not empty loginUser }">
-	            <div class="personalCenter layui-pull-right"><a href="toUserSystem" target="_blank" style="color:#fff"><i class="layui-icon layui-icon-tree"></i>个人中心</a></div>
+	            <div class="personalCenter layui-pull-right"><a href="toUserSystem" target="_blank" style="color:#fff"><i class="layui-icon layui-icon-tree"></i> 个人中心</a></div>
             </c:if>
             <c:if test="${empty loginUser }">
-                <div class="operation layui-pull-right"><i class="layui-icon layui-icon-tree"></i>您好</div>
+	            <div class="operation layui-pull-right"><i class="layui-icon layui-icon-tree"></i> 登录 - 注册</div>
             </c:if>
         </div>
     </div>
-</div>
+    <div class="details-head">
+        <!-- title -->
+        <div class="title-wrapper">
+            <div class="left-con">
+                <h2 class="sport-title">${Details.sportName}</h2>
+            </div>
+        </div>
+    </div>
+</header>
 
+<section class="layui-container wrapper">
+    <p class="breadcrumb">
+        <span class="layui-breadcrumb" lay-separator=">">
+            <a href="toIndexPage">首页</a>
+            <a href=" ">运动型请</a>
+        </span>
+    </p>
+        <div class="order-btn-container">
+        	<input type="hidden" class="HID" value="${Details.hID}">
+        	<input type="hidden" class="uName" value="${loginUser.uName}">
+            <button class="order-btn" lay-submit lay-filter="addOrder">现在预定</button>
+        </div>
+    </div>
+</section>
+
+<footer>
+</footer>
 <div class="layui-container">
-    <div class="layui-tab layui-tab-brief" id="sign" lay-filter="" >
+    <div class="layui-tab layui-tab-brief" id="sign" lay-filter="" style="display: none;">
         <ul class="layui-tab-title">
             <li class="layui-this">登录</li>
             <li>注册</li>
@@ -90,37 +125,32 @@
         </div>
     </div>
 </div>
-
-
+<script src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
 <script>
-    layui.use(['element', 'carousel','layer','form'], function () {
+    layui.use(['element', 'carousel', 'layer','form'], function () {
         var element = layui.element,
             carousel = layui.carousel,
             $ = layui.jquery,
             layer = layui.layer,
             form = layui.form;
         
-        var layer_index;
+		var layer_index;
         carousel.render({
-            elem:"#bg-item",
-            width:"100%",
-            height:"600px",
-            anim:"fade"
+            elem: "#details-image",
+            width: "100%",
+            height: "400px",
+            anim: "default"
         });
+
         $('.operation').click(function () {
-        	layer_index = layer.open({
-                type:1,
-                content:$('#sign'),
-                area:['360px','460px'],
-                title:"运动租赁",
-                closeBtn:2
+            layer_index = layer.open({
+                type: 1,
+                content: $('#sign'),
+                area: ['360px', '460px'],
+                title: "运动租赁",
+                closeBtn: 2
             });
         });
-        $('.list-item li').click(function () {
-            $('.list-item li').removeClass('click-this');
-            $(this).addClass('click-this');
-        });
-        
         $('.regist-btn').click(function () {
         	if($("input[name='uName']").val()!=""&&$("input[name='uPassword']").val()!=""&&$("input[name='uPhoneNumber']").val()!=""&&$("input[name='uNickName']").val()!=""){
 	            $.post("regist",$('.form').serialize(),function (res) {
@@ -137,19 +167,30 @@
         		layer.msg("请填写所有表单");
         	}
         });
-        
-       form.on("submit(login)",function(){
-    	   $.post("login",$('#login').serialize(),function (res) {
-    	   		if(res=="OK"){
-                    $("#sign").hide();
-    	   			// window.location.href="toIndexPage";
-    	   			window.location.href="toUserSystem";
-    	   		}else{
-    	   			layer.msg("用户名或者密码错误");
-    	   		}
-    	   });
-    	  return false; 
-       });
+        $(".order-btn").click(function(){
+        	if($(".uName").val()==""){
+        		layer.alert("您还没登录，请先登录再操作",{icon:5});
+        		return;
+        	}
+        	$.post("addOrder",{id:$(".HID").val()},function(data){
+        		if(data=="OK"){
+    				layer.alert("恭喜你，预定成功！",{icon:1});
+    				$(".order-btn").addClass("layui-btn-disabled");
+    				$(".order-btn").html("你已成功预定");
+    				$(".order-btn").off("click");
+    			}
+        	});
+        });
+        form.on("submit(login)",function(){
+     	   $.post("login",$('#login').serialize(),function (res) {
+     	   		if(res=="OK"){
+     	   			window.location.reload();
+     	   		}else{
+     	   			layer.msg("用户名或者密码错误");
+     	   		}
+     	   });
+     	  return false; 
+        });
     });
 </script>
 </body>

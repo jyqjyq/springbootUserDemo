@@ -23,7 +23,7 @@
                     <cite>${loginUser.uNickName}，欢迎回来</cite>
                     <span class="layui-nav-more"></span></a>
                 <dl class="layui-nav-child layui-anim layui-anim-upbit">
-                    <dd style="text-align: center;"><a href="/updatepwd">修改密码</a></dd>
+                    <dd style="text-align: center;"><a href="/updateInfo">修改个人信息</a></dd>
                     <hr>
                     <dd layadmin-event="logout" style="text-align: center;"><a href="signout">退出登录</a></dd>
                 </dl>
@@ -33,19 +33,17 @@
     <div class="layui-side">
         <ul class="layui-nav layui-nav-tree" lay-filter="test">
             <li class="layui-nav-item">
-                <a href="javascript:;">用户信息管理</a>
+                <a href="javascript:;">个人信息</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="myorder" target="iframe">我的租房信息</a></dd>
-                    <dd><a href="updatepwd" target="iframe">修改我的密码</a></dd>
+                    <dd><a href="updateInfo" target="iframe">修改个人信息</a></dd>
                 </dl>
             </li>
         </ul>
         <ul class="layui-nav layui-nav-tree" lay-filter="test">
             <li class="layui-nav-item">
-                <a href="javascript:;">房源信息管理</a>
+                <a href="javascript:;">运动信息</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="addHouse" target="iframe">发布房源信息</a></dd>
-                    <dd><a href="toUserRentalPage" target="iframe">我发布的信息</a></dd>
+                    <dd><a href="toAllSport" target="iframe">所有运动信息</a></dd>
                 </dl>
             </li>
         </ul>
