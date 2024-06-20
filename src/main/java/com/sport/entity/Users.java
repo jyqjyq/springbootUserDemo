@@ -2,7 +2,7 @@ package com.sport.entity;
 
 /**
  * 
- * @Description 租房用户
+ * @Description 用户
  */
 public class Users {
 

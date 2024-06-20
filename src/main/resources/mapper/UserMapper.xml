@@ -18,7 +18,7 @@
 	</select>
 	<!-- 注册 -->
 	<insert id="regist" parameterType="com.sport.entity.Users">
-		insert into t_users values(0,#{uName},#{uPassword},#{uPhoneNumber},#{uNickName})
+		insert into t_users (u_name,u_password,u_phone_number,u_nickname) values(#{uName},#{uPassword},#{uPhoneNumber},#{uNickName})
 	</insert>
 	
 	<!-- 检查旧密码 -->
